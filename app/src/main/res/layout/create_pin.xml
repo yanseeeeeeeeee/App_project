@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:id="@+id/vhod"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="144dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:text="Создайте пароль"
+                android:layout_gravity="center"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_marginTop="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/Caption"
+                android:textSize="15sp"
+                android:fontFamily="@font/sf_pro_display_medium"
+                android:text="Для защиты ваших персональных данных"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="56dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/vhod">
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bot_empty" />
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bot_empty" />
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bot_empty" />
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:background="@drawable/bot_empty" />
+
+        </LinearLayout>
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+            <TableRow
+                android:gravity="center">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:text="1"
+                    android:textColor="@drawable/button_text"
+                    android:textSize="24sp"
+                    android:background="@drawable/button_oval"
+                    android:fontFamily="@font/sf_pro_display_medium"
+                    android:stateListAnimator="@null"
+                    android:layout_marginEnd="24dp"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:text="2"
+                    android:textColor="@drawable/button_text"
+                    android:background="@drawable/button_oval"
+                    android:stateListAnimator="@null"
+                    android:textSize="24sp"
+                    android:layout_marginEnd="24dp"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:text="3"
+                    android:textColor="@drawable/button_text"
+                    android:textSize="24sp"
+                    android:background="@drawable/button_oval"
+                    android:stateListAnimator="@null"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_marginTop="24dp">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:text="4"
+                    android:textColor="@drawable/button_text"
+                    android:textSize="24sp"
+                    android:background="@drawable/button_oval"
+                    android:fontFamily="@font/sf_pro_display_medium"
+                    android:stateListAnimator="@null"
+                    android:layout_marginEnd="24dp"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:text="5"
+                    android:textColor="@drawable/button_text"
+                    android:background="@drawable/button_oval"
+                    android:stateListAnimator="@null"
+                    android:textSize="24sp"
+                    android:layout_marginEnd="24dp"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:text="6"
+                    android:textColor="@drawable/button_text"
+                    android:textSize="24sp"
+                    android:background="@drawable/button_oval"
+                    android:stateListAnimator="@null"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_marginTop="24dp">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:text="7"
+                    android:textColor="@drawable/button_text"
+                    android:textSize="24sp"
+                    android:background="@drawable/button_oval"
+                    android:fontFamily="@font/sf_pro_display_medium"
+                    android:stateListAnimator="@null"
+                    android:layout_marginEnd="24dp"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:text="8"
+                    android:textColor="@drawable/button_text"
+                    android:background="@drawable/button_oval"
+                    android:stateListAnimator="@null"
+                    android:textSize="24sp"
+                    android:layout_marginEnd="24dp"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:text="9"
+                    android:textColor="@drawable/button_text"
+                    android:textSize="24sp"
+                    android:background="@drawable/button_oval"
+                    android:stateListAnimator="@null"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_marginTop="24dp"
+                android:gravity="end">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:background="@drawable/button_oval"
+                    android:text="0"
+                    android:textSize="24sp"
+                    android:stateListAnimator="@null"
+                    android:layout_marginStart="24dp"/>
+
+                <ImageButton
+                    android:layout_marginStart="24dp"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    app:srcCompat="@drawable/del_icon"
+                    android:background="@android:color/transparent"
+                    android:layout_gravity="center_vertical"
+                    />
+
+            </TableRow>
+
+        </TableLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
