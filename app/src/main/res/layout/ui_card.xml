@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="16dp"
+    app:cardCornerRadius="16dp"
+    android:background="@color/white">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="136dp"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
+            android:text="Рубашка Воскресенье для машинного вязания"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:text="Мужская одежда"
+                android:textColor="@color/Caption"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/roboto"
+                android:text="300₽"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/blue_all_button"
+            android:paddingHorizontal="15.5dp"
+            android:paddingVertical="10dp"
+            android:text="Добавить"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
+    </RelativeLayout>
+
+
+</com.google.android.material.card.MaterialCardView>
