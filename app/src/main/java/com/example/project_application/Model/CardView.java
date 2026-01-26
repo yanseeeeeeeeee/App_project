@@ -8,12 +8,19 @@ public class CardView {
 
     private String price;
 
+    private boolean isAdded = false;
+
     public CardView(String title,
                     String category,
                     String price) {
         this.title = title;
         this.category = category;
         this.price = price;
+    }
+    public boolean isAdded() {return isAdded;}
+
+    public void setAdded(boolean added) {
+        isAdded = added;
     }
 
     public String getCategory() {

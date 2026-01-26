@@ -15,4 +15,5 @@
     <color name="Accent_inactive">#C9D4FB</color>
     <color name = "Caption">#939396</color>
     <color name="Error">#FD3535</color>
+    <color name="Icons">#B8C1CC</color>
 </resources>

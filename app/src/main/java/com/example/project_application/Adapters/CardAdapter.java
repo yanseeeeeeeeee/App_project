@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project_application.Model.CardView;
@@ -19,6 +20,11 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
 
     private Context context;
     private List<CardView> list;
+
+    public CardAdapter(Context context, List<CardView> list) {
+        this.context = context;
+        this.list = list;
+    }
 
     @NonNull
     @Override
@@ -33,6 +39,26 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
         holder.title.setText(card.getTitle()); //берем текст для заголовка
         holder.type.setText(card.getCategory()); //текст для категории
         holder.price.setText(card.getPrice());
+
+        if (!card.isAdded()) {
+            holder.add.setText("Добавить");
+            holder.add.setBackgroundResource(R.drawable.blue_all_button);
+            holder.add.setTextColor(ContextCompat.getColor(context, R.color.white));
+        } else {
+            holder.add.setText("Убрать");
+            holder.add.setBackgroundResource(R.drawable.white_blue_button);
+            holder.add.setTextColor(ContextCompat.getColor(context, R.color.Accent));
+        }
+
+        holder.add.setOnClickListener(v ->
+                card.setAdded(!card.isAdded()));
+                holder.itemView.post(() -> notifyItemChanged(position));
+    }
+
+    public void updateList(List<CardView> newList) {
+        list.clear();
+        list.addAll(newList);
+        notifyDataSetChanged();
     }
 
     @Override
