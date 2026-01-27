@@ -1,9 +1,7 @@
 package com.example.project_application;
 
-import android.content.Context;
 import android.os.Bundle;
 
-import androidx.appcompat.widget.SearchView;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,19 +12,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.example.project_application.Adapters.BannerAdapter;
 import com.example.project_application.Adapters.CardAdapter;
-import com.example.project_application.Adapters.CategoryAdapter;
-import com.example.project_application.DataBase.Item;
-import com.example.project_application.DataBase.SupaBaseClient;
+import com.example.project_application.backend.Model.Item;
+import com.example.project_application.backend.Database.RetrofitClient;
 import com.example.project_application.Lists.Cards;
-import com.example.project_application.Model.BannerImage;
-import com.example.project_application.Model.CardView;
-import com.example.project_application.Model.CategoryButton;
+import com.example.project_application.ModelUi.BannerImage;
+import com.example.project_application.ModelUi.CardView;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -94,7 +88,6 @@ public class home_fragment extends Fragment {
         categoryRecycler.setLayoutManager(layoutManager1);
 
         all = view.findViewById(R.id.all);
-        all.setOnClickListener(v -> fetchData());
 
         //обработчик для кнопок (смена цвета и фона)
         woman = view.findViewById(R.id.woman);
@@ -143,36 +136,5 @@ public class home_fragment extends Fragment {
 
     private void initializeListCard() {
         cardView = new ArrayList<>(cards.getAllList());
-    }
-
-     // Получение данных из базы данных
-
-    private void fetchData() {
-        // Просто вызываем метод без параметров
-        SupaBaseClient.getApiService().getItems().enqueue(new Callback<List<Item>>() {
-            @Override
-            public void onResponse(Call<List<Item>> call, Response<List<Item>> response) {
-                Log.d("API_DEBUG", "Код ответа: " + response.code());
-
-                if (response.isSuccessful() && response.body() != null) {
-                    // ... ваш код обработки ...
-                    Log.d("Database", "Успешно получено элементов: " + response.body().size());
-
-                    List<Item> items = response.body();
-
-                    for (var item : items) {
-                        Log.d("API_DEBUG", "Данные: " + item.getTitle() + ", " + item.getType() + ", " + item.getPrice());
-                    }
-                } else {
-                    // Теперь это покажет реальный JSON ошибки (например, неверное имя колонки)
-                    Log.e("API_DEBUG", String.format("Детали: %s", response.errorBody()));
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<Item>> call, Throwable t) {
-                Log.e("API_DEBUG", "Ошибка: " + t.getMessage());
-            }
-        });
     }
 }

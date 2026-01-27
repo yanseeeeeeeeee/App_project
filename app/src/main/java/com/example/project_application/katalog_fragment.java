@@ -3,10 +3,16 @@ package com.example.project_application;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.project_application.Adapters.CategoryAdapter;
+import com.example.project_application.Lists.Cards;
+import com.example.project_application.Lists.Category;
 
 
 public class katalog_fragment extends Fragment {
@@ -16,6 +22,8 @@ public class katalog_fragment extends Fragment {
 
     private String mParam1;
     private String mParam2;
+
+    Category category = new Category();
 
     public katalog_fragment() {
 
@@ -43,6 +51,15 @@ public class katalog_fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
        View view = inflater.inflate(R.layout.katalog_fragment, container, false);
+
+       //настройка рекуклера для категорий
+        RecyclerView categoryRecycler = view.findViewById(R.id.category);
+        CategoryAdapter catAdapter = new CategoryAdapter(requireContext(), category.getList());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
+        categoryRecycler.setAdapter(catAdapter);
+        categoryRecycler.setLayoutManager(layoutManager);
+
+        //настройка рекуклера для карточек
 
 
 

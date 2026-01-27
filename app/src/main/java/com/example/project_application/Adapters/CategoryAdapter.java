@@ -9,7 +9,7 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.project_application.Model.CategoryButton;
+import com.example.project_application.ModelUi.CategoryButton;
 import com.example.project_application.R;
 
 import java.util.List;

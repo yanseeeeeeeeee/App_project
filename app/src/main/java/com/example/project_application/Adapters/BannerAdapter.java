@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.project_application.Model.BannerImage;
+import com.example.project_application.ModelUi.BannerImage;
 import com.example.project_application.R;
 
 import java.util.List;

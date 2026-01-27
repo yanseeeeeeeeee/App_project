@@ -1,6 +1,6 @@
 package com.example.project_application.Lists;
 
-import com.example.project_application.Model.CardView;
+import com.example.project_application.ModelUi.CardView;
 
 import java.util.ArrayList;
 import java.util.Arrays;

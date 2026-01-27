@@ -1,4 +1,4 @@
-package com.example.project_application.DataBase;
+package com.example.project_application.backend.Model;
 
 public class Item {
     private int id;

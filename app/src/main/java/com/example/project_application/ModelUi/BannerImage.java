@@ -1,4 +1,4 @@
-package com.example.project_application.Model;
+package com.example.project_application.ModelUi;
 
 public class BannerImage {
 

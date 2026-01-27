@@ -29,6 +29,14 @@
             android:exported="true">
         </activity>
 
+        <activity android:name=".SignIn"
+            android:exported="true">
+        </activity>
+
+        <activity android:name=".Registration"
+            android:exported="true">
+        </activity>
+
     </application>
 
 </manifest>

@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.project_application.Model.CardView;
+import com.example.project_application.ModelUi.CardView;
 import com.example.project_application.R;
 
 import java.util.List;

@@ -8,10 +8,7 @@
       <SelectionState runConfigName="Main">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="Main (2)">
-        <option name="selectionMode" value="DROPDOWN" />
-      </SelectionState>
-      <SelectionState runConfigName="Main (3)">
+      <SelectionState runConfigName="SignIn">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>
