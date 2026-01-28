@@ -35,7 +35,9 @@ public class Main extends AppCompatActivity {
             } else if (id == R.id.profile) {
                 fragment = new profile_fragment();
             }
+            LoadFragment(fragment);
             return true;
+
         });
 
     }

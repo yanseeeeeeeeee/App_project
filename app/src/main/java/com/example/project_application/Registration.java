@@ -1,7 +1,11 @@
 package com.example.project_application;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Patterns;
+import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,42 +14,95 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.datepicker.MaterialDatePicker;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class Registration extends AppCompatActivity {
 
-    EditText name, surname, lastName, email;
+    EditText name, surname, lastName, email, date;
     Button dalee;
-
     AutoCompleteTextView pol;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_card);
-
         name = findViewById(R.id.name);
         surname = findViewById(R.id.surname);
         lastName = findViewById(R.id.lastname);
         email = findViewById(R.id.email);
         dalee = findViewById(R.id.dalee);
         pol = findViewById(R.id.sex);
+        date = findViewById(R.id.date);
 
-        String namee = name.getText().toString();
-        String surnamee = surname.getText().toString();
-        String lastNamee = lastName.getText().toString();
-        String mail = email.getText().toString();
-        String poll = pol.getText().toString();
+        //Настройка адаптера для выпадающего списка
+        String[] sexOp = {"Женский", "Мужской"};
 
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(
+                this,
+                android.R.layout.simple_list_item_1,
+                sexOp
+        );
+        pol.setAdapter(arrayAdapter);
+
+        //настройка поля для ввода даты
+        date.setFocusable(false);
+        date.setOnClickListener( v -> {
+            MaterialDatePicker<Long> datePicker = MaterialDatePicker.Builder.datePicker()
+                    .setTitleText("Выберите дату")
+                    .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+                    .build();
+
+                    datePicker.addOnPositiveButtonClickListener(selection -> {
+                        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
+                        date.setText(sdf.format(new Date(selection)));
+                    });
+
+                    datePicker.show(getSupportFragmentManager(), "DATE_PICKER");
+        });
+
+        //отслеживание заполненных полей для активности кнопки
+        TextWatcher textWatcher = new TextWatcher() {
+            @Override
+            public void afterTextChanged(Editable s) {}
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String namee = name.getText().toString();
+                String surnamee = surname.getText().toString();
+                String lastNamee = lastName.getText().toString();
+                String mail = email.getText().toString();
+                String poll = pol.getText().toString();
+
+                dalee.setEnabled(!namee.isEmpty() && !surnamee.isEmpty() && !lastNamee.isEmpty() &&
+                        !mail.isEmpty() && !poll.isEmpty());
+
+            }
+        };
+
+        name.addTextChangedListener(textWatcher);
+        surname.addTextChangedListener(textWatcher);
+        lastName.addTextChangedListener(textWatcher);
+        email.addTextChangedListener(textWatcher);
+        pol.addTextChangedListener(textWatcher);
+
+        //Обработчик кнопки "Далее"
         dalee.setOnClickListener(v -> {
-            if (namee.isEmpty() || surnamee.isEmpty() || lastNamee.isEmpty() || mail.isEmpty() ||poll.isEmpty() ) {
-                Toast.makeText(this, "Заполните все поля", Toast.LENGTH_SHORT).show();
-            } else
+            String mail = email.getText().toString();
                 if (!Patterns.EMAIL_ADDRESS.matcher(mail).matches()) {
                     Toast.makeText(this, "Неккоректный email", Toast.LENGTH_SHORT).show();
+                } else {
+                    startActivity(new Intent(Registration.this, CreatePassword.class));
                 }
         });
 
 
-        /*String PASSWORD_PATTERN  = "^(&=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$";
-        boolean isValid = pass.matches(PASSWORD_PATTERN);*/
+
     }
 }

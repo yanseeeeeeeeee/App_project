@@ -124,6 +124,7 @@
         android:background="@drawable/blue_button"
         android:fontFamily="@font/sf_pro_display_medium"
         android:text="Далее"
+        android:enabled="false"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="17sp"
