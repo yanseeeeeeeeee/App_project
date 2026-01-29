@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView
+
+
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    android:fillViewport="true">
-
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     android:background="@color/white"
     tools:context=".home_fragment">
 
@@ -19,7 +15,7 @@
         android:id="@+id/searchView"
         android:layout_width="0dp"
         android:layout_height="48dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="68dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:background="@drawable/edit_text"
@@ -134,7 +130,7 @@
         android:layout_marginTop="12dp"
         android:id="@+id/CardRecycler"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout12" />
@@ -144,4 +140,3 @@
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
-</ScrollView>

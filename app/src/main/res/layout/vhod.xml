@@ -39,24 +39,28 @@
         app:layout_constraintTop_toBottomOf="@+id/textView">
 
         <ImageView
+            android:id="@+id/dot1"
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/bot_empty" />
 
         <ImageView
+            android:id="@+id/dot2"
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/bot_empty" />
 
         <ImageView
+            android:id="@+id/dot3"
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/bot_empty" />
 
         <ImageView
+            android:id="@+id/dot4"
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:background="@drawable/bot_empty" />
@@ -79,28 +83,31 @@
                android:layout_width="80dp"
                android:layout_height="80dp"
                android:text="1"
-               android:textColor="@drawable/button_text"
+               android:textColor="@color/text_pin"
                android:textSize="24sp"
                android:background="@drawable/button_oval"
                android:fontFamily="@font/sf_pro_display_medium"
                android:stateListAnimator="@null"
+               android:onClick="NumClick"
                android:layout_marginEnd="24dp"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:text="2"
-                android:textColor="@drawable/button_text"
+                android:textColor="@color/text_pin"
                 android:background="@drawable/button_oval"
                 android:stateListAnimator="@null"
                 android:textSize="24sp"
+                android:onClick="NumClick"
                 android:layout_marginEnd="24dp"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:text="3"
-                android:textColor="@drawable/button_text"
+                android:onClick="NumClick"
+                android:textColor="@color/text_pin"
                 android:textSize="24sp"
                 android:background="@drawable/button_oval"
                 android:stateListAnimator="@null"/>
@@ -114,18 +121,20 @@
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:text="4"
-                android:textColor="@drawable/button_text"
+                android:textColor="@color/text_pin"
                 android:textSize="24sp"
                 android:background="@drawable/button_oval"
                 android:fontFamily="@font/sf_pro_display_medium"
                 android:stateListAnimator="@null"
+                android:onClick="NumClick"
                 android:layout_marginEnd="24dp"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:text="5"
-                android:textColor="@drawable/button_text"
+                android:onClick="NumClick"
+                android:textColor="@color/text_pin"
                 android:background="@drawable/button_oval"
                 android:stateListAnimator="@null"
                 android:textSize="24sp"
@@ -135,7 +144,8 @@
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:text="6"
-                android:textColor="@drawable/button_text"
+                android:onClick="NumClick"
+                android:textColor="@color/text_pin"
                 android:textSize="24sp"
                 android:background="@drawable/button_oval"
                 android:stateListAnimator="@null"/>
@@ -149,8 +159,9 @@
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:text="7"
-                android:textColor="@drawable/button_text"
+                android:textColor="@color/text_pin"
                 android:textSize="24sp"
+                android:onClick="NumClick"
                 android:background="@drawable/button_oval"
                 android:fontFamily="@font/sf_pro_display_medium"
                 android:stateListAnimator="@null"
@@ -160,7 +171,8 @@
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:text="8"
-                android:textColor="@drawable/button_text"
+                android:onClick="NumClick"
+                android:textColor="@color/text_pin"
                 android:background="@drawable/button_oval"
                 android:stateListAnimator="@null"
                 android:textSize="24sp"
@@ -170,7 +182,8 @@
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:text="9"
-                android:textColor="@drawable/button_text"
+                android:onClick="NumClick"
+                android:textColor="@color/text_pin"
                 android:textSize="24sp"
                 android:background="@drawable/button_oval"
                 android:stateListAnimator="@null"/>
@@ -185,19 +198,21 @@
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:background="@drawable/button_oval"
+                android:textColor="@color/text_pin"
                 android:text="0"
+                android:onClick="NumClick"
                 android:textSize="24sp"
                 android:stateListAnimator="@null"
                 android:layout_marginStart="24dp"/>
 
             <ImageButton
-                android:layout_marginStart="24dp"
+                android:id="@+id/back"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                app:srcCompat="@drawable/del_icon"
-                android:background="@android:color/transparent"
                 android:layout_gravity="center_vertical"
-                />
+                android:layout_marginStart="24dp"
+                android:background="@android:color/transparent"
+                app:srcCompat="@drawable/del_icon" />
 
         </TableRow>
 

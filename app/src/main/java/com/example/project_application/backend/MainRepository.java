@@ -1,7 +1,10 @@
 package com.example.project_application.backend;
 
+import android.media.MediaRouter;
+
 import com.example.project_application.backend.Database.RetrofitClient;
 import com.example.project_application.backend.Database.SupabaseApi;
+import com.example.project_application.backend.Model.UserModel;
 
 import java.util.List;
 import java.util.Map;
@@ -38,6 +41,43 @@ public class MainRepository {
         });
     }
 
+    public void saveUser(UserModel user, final SimpleCallback callback) {
+        api.addUser(user).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()  ) {
+                    callback.onSuccess();
+                } else {
+                    callback.onError();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                callback.onError();
+            }
+        });
+    }
+
+    public void getUser(String email, String password, String select, final SimpleDataCallBack callback ) {
+        api.getUser(email, password, select).enqueue(new Callback<List<UserModel>>() {
+            @Override
+            public void onResponse(Call<List<UserModel>> call, Response<List<UserModel>> response) {
+                if(response.isSuccessful() && response.body()!=null &&!response.body().isEmpty()) {
+
+                    callback.onSuccess(response.body().get(0));
+                } else {
+                    callback.onError();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<UserModel>> call, Throwable t) {
+                callback.onError();
+            }
+        });
+    }
+
 
 
     /**
@@ -46,5 +86,15 @@ public class MainRepository {
     public interface DataCallback {
         void onSuccess(List<Map<String, Object>> data);
         void onError(String error);
+    }
+
+    public interface SimpleCallback{
+        void onSuccess();
+        void onError();
+    }
+
+    public interface SimpleDataCallBack{
+        void onSuccess(UserModel user);
+        void onError();
     }
 }

@@ -1,6 +1,7 @@
 package com.example.project_application;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.view.View;
@@ -12,69 +13,59 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class CreatePin extends AppCompatActivity {
+public class Vhod extends AppCompatActivity {
 
     ImageView dot1, dot2, dot3, dot4;
     ImageButton back;
-    public String pass = "";
+    String pinCode;
+    String pin = "";
 
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.create_pin);
+        setContentView(R.layout.vhod);
+        SharedPreferences preferences = getSharedPreferences("AppPrefs", MODE_PRIVATE);
+        pinCode = preferences.getString("user_pin", "");
 
         dot1 = findViewById(R.id.dot1);
         dot2 = findViewById(R.id.dot2);
-        dot3= findViewById(R.id.dot3);
+        dot3 = findViewById(R.id.dot3);
         dot4 = findViewById(R.id.dot4);
+
         back = findViewById(R.id.back);
 
-        back.setOnClickListener(v->{
-            if (pass.length() > 0) {
-                pass = pass.substring(0, pass.length()-1);
-                updateDots();
-            }
-        });
     }
-
-    /**
-     * Метод для нажатия на кнопку
-     */
-    public void onNumberClick(View view) {
-        if (pass.length() < 4) {
+    public void NumClick(View view) {
+        if (pin.length() <4 ) {
             Button b = (Button) view;
-            pass = pass + b.getText().toString();
+            pin = pin + b.getText().toString();
             updateDots();
-        } if (pass.length()==4) {
-            getSharedPreferences("AppPrefs" , MODE_PRIVATE)
-                    .edit()
-                    .putString("user_pin", pass)
-                    .apply();
-            Toast.makeText(CreatePin.this, "Pin установлен", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(this, Main.class));
+        } if (pin.length() ==4) {
+            if (pin.equals(pinCode)) {
+                Toast.makeText(this, "Добро пожаловать!", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, Main.class));
+            } else {
+                Toast.makeText(this, "Неверный pin", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
-    /**
-     * Метод для обновления точечек
-     */
-    public void updateDots(){
-
+    public void updateDots() {
         dot1.setImageResource(R.drawable.bot_empty);
         dot2.setImageResource(R.drawable.bot_empty);
         dot3.setImageResource(R.drawable.bot_empty);
         dot4.setImageResource(R.drawable.bot_empty);
 
-        if (pass.length() >= 1 )
+        if (pin.length()>=1)
             dot1.setImageResource(R.drawable.bot_ready);
-        if (pass.length() >= 2)
+        if (pin.length()>=2)
             dot2.setImageResource(R.drawable.bot_ready);
-        if (pass.length() >= 3)
+        if (pin.length()>=3)
             dot3.setImageResource(R.drawable.bot_ready);
-        if (pass.length() >=4)
+        if (pin.length()>=4)
             dot4.setImageResource(R.drawable.bot_ready);
-    }
 
+    }
 
 }

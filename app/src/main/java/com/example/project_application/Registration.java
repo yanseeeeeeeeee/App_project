@@ -14,11 +14,17 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.project_application.backend.Model.BaseModel;
+import com.example.project_application.backend.Model.Models;
+import com.example.project_application.backend.Model.UserModel;
 import com.google.android.material.datepicker.MaterialDatePicker;
+import com.google.gson.Gson;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 public class Registration extends AppCompatActivity {
 
@@ -92,12 +98,28 @@ public class Registration extends AppCompatActivity {
         email.addTextChangedListener(textWatcher);
         pol.addTextChangedListener(textWatcher);
 
+
+
         //Обработчик кнопки "Далее"
         dalee.setOnClickListener(v -> {
             String mail = email.getText().toString();
                 if (!Patterns.EMAIL_ADDRESS.matcher(mail).matches()) {
                     Toast.makeText(this, "Неккоректный email", Toast.LENGTH_SHORT).show();
                 } else {
+                    UserModel user = new UserModel();
+                    user.setName(name.getText().toString().trim());
+                    user.setSurname(surname.getText().toString().trim());
+                    user.setLastName(lastName.getText().toString().trim());
+                    user.setDate(date.getText().toString().trim());
+                    user.setEmail(email.getText().toString().trim());
+                    user.setSex(pol.getText().toString().trim());
+
+                    Models.save.put("user", user);
+                    Gson gson = new Gson();
+                    String userData = gson.toJson(user);
+
+                    getSharedPreferences("AppPrefs", MODE_PRIVATE).edit().putString("user_data", userData).apply();
+
                     startActivity(new Intent(Registration.this, CreatePassword.class));
                 }
         });

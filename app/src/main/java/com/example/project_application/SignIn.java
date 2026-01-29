@@ -16,11 +16,25 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.project_application.backend.Database.SupabaseApi;
+import com.example.project_application.backend.MainRepository;
+import com.example.project_application.backend.Model.Models;
+import com.example.project_application.backend.Model.UserModel;
+import com.google.gson.Gson;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class SignIn extends AppCompatActivity {
 
     EditText email, password;
     Button dalee;
     TextView registr;
+
+    SupabaseApi api;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -62,12 +76,37 @@ public class SignIn extends AppCompatActivity {
 
         //обработка полей для перехода на главную
         dalee.setOnClickListener(v -> {
-            if (email.getText().toString().isEmpty() || password.getText().toString().isEmpty()) {
-                Toast.makeText(this, "Не все поля заполнены", Toast.LENGTH_SHORT).show();
-            } else if (!Patterns.EMAIL_ADDRESS.matcher(email.getText().toString()).matches()) {
+            if (!Patterns.EMAIL_ADDRESS.matcher(email.getText().toString()).matches()) {
                 Toast.makeText(this, "Неккоректный email", Toast.LENGTH_SHORT).show();
             } else {
-                startActivity(new Intent(SignIn.this, Main.class));
+                MainRepository repository = new MainRepository();
+                repository.getUser("eq." + email.getText().toString(),"eq." + password.getText().toString(), "*",
+                        new MainRepository.SimpleDataCallBack() {
+                    @Override
+                    public void onSuccess(UserModel user) {
+                        Log.d("Supabase", "Пользователь найден");
+                        Gson gson = new Gson();
+                        String userData = gson.toJson(user);
+
+                        getSharedPreferences("AppPrefs", MODE_PRIVATE)
+                                .edit()
+                                .putString("user_data", userData)
+                                .putBoolean("is_logged_in", true)
+                                .apply();
+
+                        startActivity(new Intent(SignIn.this, CreatePin.class));
+                        finish();
+                    }
+
+                    @Override
+                    public void onError() {
+                        Log.d("Supabase", "Пользователь не найден");
+                        Toast.makeText(SignIn.this, "Неправильный логин или пароль", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
+
             }
         });
     }

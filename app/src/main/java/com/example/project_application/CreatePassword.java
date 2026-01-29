@@ -1,5 +1,7 @@
 package com.example.project_application;
 
+import android.content.Intent;
+import android.icu.text.UnicodeSet;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.text.Editable;
@@ -11,6 +13,10 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.project_application.backend.MainRepository;
+import com.example.project_application.backend.Model.Models;
+import com.example.project_application.backend.Model.UserModel;
 
 
 public class CreatePassword extends AppCompatActivity {
@@ -63,16 +69,30 @@ public class CreatePassword extends AppCompatActivity {
             Log.d("Logi", "Полученный пароль:" + pass);
 
 
-            if (!pass.matches(PASSWORD_PATTERN)) {
+            if (!pass.matches(PASSWORD_PATTERN) ) {
                 Toast.makeText(this, "Пароль должен содержать заглавные и строчные буквы, цифры, пробелы и специальные символы.", Toast.LENGTH_LONG)
                         .show();
             } else if (!pass.equals(passTwo)) {
                 Toast.makeText(this, "Введенные пароли не совпадают", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(this, "Успешно", Toast.LENGTH_SHORT).show();
+                UserModel user = (UserModel) Models.save.get("user");
+                if (user!=null) {
+                    user.setPassword(pass);
+                    MainRepository repository = new MainRepository();
+                    repository.saveUser(user, new MainRepository.SimpleCallback() {
+                        @Override
+                        public void onSuccess() {
+                            Toast.makeText(CreatePassword.this, "Успешно", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(CreatePassword.this, CreatePin.class));
+                        }
+
+                        @Override
+                        public void onError() {
+                            Log.d("Supabase", "Ошибка");
+                        }
+                    });
+                }
             }
         });
-
-
     }
 }
